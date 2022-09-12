@@ -19,7 +19,7 @@ public class AuthorizationTest {
 
     @ParameterizedTest
     @CsvSource (value = {"anna, losen", "berit, 123456", "kalle, password"}) // Given
-    public void usernameAndPasswordAuthorization(String username, String password){
+    public void usernameAndPasswordAuthorization(String username, String password) throws IllegalAccessException {
 
         // When
         boolean result = authorization.authorize(username, password);
