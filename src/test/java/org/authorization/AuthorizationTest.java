@@ -25,7 +25,7 @@ public class AuthorizationTest {
         boolean result = authorization.authorize(username, password);
 
         //Then
-        assertFalse(result);
+        assertTrue(result);
     }
 
 
