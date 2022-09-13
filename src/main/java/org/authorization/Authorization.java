@@ -55,18 +55,22 @@ public class Authorization {
 
     }
 
-    public boolean isUserValid(String token) {
+    public boolean isUserValid(String tokenFromTest) {
 
-        byte [] backAsBase64Bytes = token.getBytes();
-        byte [] backAsBytes = Base64.getDecoder().decode(backAsBase64Bytes);
-        String backAsString = new String(backAsBytes);
+        for (String token : tokens){
+            if (token.equals(tokenFromTest)){
+                byte [] backAsBase64Bytes = token.getBytes();
+                byte [] backAsBytes = Base64.getDecoder().decode(backAsBase64Bytes);
+                String backAsString = new String(backAsBytes);
 
-        for (Users users: userList){
-            if ((users.getUsername() + users.getPassword()).equals(backAsString)){
-                return false;
+                for (Users users: userList){
+                    if ((users.getUsername() + users.getPassword()).equals(backAsString)){
+                        return true;
+                    }
+                }
             }
         }
-            return true;
+            return false;
 
     }
 }
