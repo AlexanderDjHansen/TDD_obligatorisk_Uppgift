@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,18 +30,25 @@ public class AuthorizationTest {
     }
 
     @ParameterizedTest
-    @CsvSource (value = {"anna, losen, YW5uYWxvc2Vu", "berit, 123456, YmVyaXQxMjM0NTY=", "kalle, password, a2FsbGVwYXNzd29yZA=="}) // Given
+    @CsvSource (value = {"anna, losen, YW5uYWxvc2Vuää", "berit, 123456, YmVyaXQxMjM0NTY", "kalle, password, a2FsbGVwYXNzd29yZA"}) // Given
     public void base64Authorization(String username, String password, String expected) throws IllegalAccessException {
 
         // When
         String result = authorization.getAuthorizationToken(username, password);
-        boolean isValid = authorization.isUserValid(expected);
 
         //Then
         assertEquals(expected, result);
-        assertTrue(isValid);
-
     }
 
+    @ParameterizedTest
+    @ValueSource (strings = {"YW5uYWxvc2Vuää","YmVyaXQxMjM0NTY", "a2FsbGVwYXNzd29yZA" }) // Given
+    public void validateToken(String token){
+        // When
+        boolean isValid = authorization.isTokenValid(token);
+        // Then
+        assertTrue(isValid);
+
+
+    }
 
 }
