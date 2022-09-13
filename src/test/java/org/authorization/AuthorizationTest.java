@@ -28,17 +28,16 @@ public class AuthorizationTest {
         assertTrue(result);
     }
 
-    @Test
-    public void base64Authorization() throws IllegalAccessException {
-        // Given
-        String username = "anna";
-        String password = "losen";
+    @ParameterizedTest
+    @CsvSource (value = {"anna, losen, YW5uYWxvc2Vu", "berit, 123456, YmVyaXQxMjM0NTY=", "kalle, password, a2FsbGVwYXNzd29yZA=="}) // Given
+    public void base64Authorization(String username, String password, String expected) throws IllegalAccessException {
+
 
         // When
         String result = authorization.getAuthorizationToken(username, password);
 
         //Then
-        assertEquals("", result);
+        assertEquals(expected, result);
 
 
     }
