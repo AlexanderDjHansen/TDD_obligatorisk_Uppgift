@@ -29,7 +29,7 @@ public class AuthorizationTest {
     }
 
     @Test
-    public void base64Authorization(){
+    public void base64Authorization() throws IllegalAccessException {
         // Given
         String username = "anna";
         String password = "losen";
