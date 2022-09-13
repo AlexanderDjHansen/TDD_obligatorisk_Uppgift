@@ -41,7 +41,7 @@ public class AuthorizationTest {
     }
 
     @ParameterizedTest
-    @ValueSource (strings = {"YW5uYWxvc2Vuää","YmVyaXQxMjM0NTY", "a2FsbGVwYXNzd29yZA" }) // Given
+    @ValueSource (strings = {"YW5uYWxvc2Vu","YmVyaXQxMjM0NTY", "a2FsbGVwYXNzd29yZA" }) // Given
     public void validateToken(String token){
         // When
         boolean isValid = authorization.isTokenValid(token);
