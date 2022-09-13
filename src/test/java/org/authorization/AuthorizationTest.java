@@ -34,11 +34,11 @@ public class AuthorizationTest {
 
         // When
         String result = authorization.getAuthorizationToken(username, password);
-        boolean isValid = authorization.isUserValid(username, password);
+        boolean isValid = authorization.isUserValid(expected);
 
         //Then
         assertEquals(expected, result);
-        assertTrue(expected, isValid);
+        assertTrue(isValid);
 
     }
 

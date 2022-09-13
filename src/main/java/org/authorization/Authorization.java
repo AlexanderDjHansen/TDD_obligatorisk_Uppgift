@@ -15,6 +15,8 @@ public class Authorization {
             new Users("kalle", "password")
     ));
 
+    public static ArrayList<String> tokens = new ArrayList<>();
+
 
     public boolean authorize(String username, String password) throws IllegalAccessException {
         HashMap<String, String> users = new HashMap<>();
@@ -43,13 +45,28 @@ public class Authorization {
                 String userAsOriginal = users.getUsername() + users.getPassword();
                 byte[] userAsBytes = userAsOriginal.getBytes();
                 byte[] base64Bytes = Base64.getEncoder().encode(userAsBytes);
-
+                tokens.add(new String(base64Bytes));
                 return new String(base64Bytes);
 
             }
         }
         throw new IllegalAccessException("Username or password does not exists");
 
+
+    }
+
+    public boolean isUserValid(String token) {
+
+        byte [] backAsBase64Bytes = token.getBytes();
+        byte [] backAsBytes = Base64.getDecoder().decode(backAsBase64Bytes);
+        String backAsString = new String(backAsBytes);
+
+        for (Users users: userList){
+            if ((users.getUsername() + users.getPassword()).equals(backAsString)){
+                return false;
+            }
+        }
+            return true;
 
     }
 }
