@@ -1,8 +1,11 @@
 package org.authorization;
 
+
 import java.util.HashMap;
 
+
 public class Authorization {
+
 
     public boolean authorize(String username, String password) throws IllegalAccessException {
         HashMap<String, String> users = new HashMap<>();
@@ -17,7 +20,7 @@ public class Authorization {
             throw new IllegalAccessException("Wrong password");
         }
         if (!users.containsKey(username) && !users.containsValue(password)){
-            throw new IllegalAccessException("Wrong usename and password");
+            throw new IllegalAccessException("Wrong username and password");
         }
 
         return users.containsKey(username) && users.containsValue(password);
