@@ -44,8 +44,8 @@ public class Authorization {
                 byte[] userAsBytes = userAsOriginal.getBytes();
                 byte[] base64Bytes = Base64.getEncoder().encode(userAsBytes);
 
-
                 return new String(base64Bytes);
+
             }
         }
         throw new IllegalAccessException("Username or password does not exists");
