@@ -35,7 +35,7 @@ public class AuthorizationTest {
         String password = "losen";
 
         // When
-        String result = authorization.getAuthorizationToken();
+        String result = authorization.getAuthorizationToken(username, password);
 
         //Then
         assertEquals("", result);
