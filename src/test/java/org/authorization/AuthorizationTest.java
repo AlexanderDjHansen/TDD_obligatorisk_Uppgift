@@ -30,7 +30,7 @@ public class AuthorizationTest {
     }
 
     @ParameterizedTest
-    @CsvSource (value = {"anna, losen, YW5uYWxvc2Vuää", "berit, 123456, YmVyaXQxMjM0NTY", "kalle, password, a2FsbGVwYXNzd29yZA"}) // Given
+    @CsvSource (value = {"anna, losen, YW5uYWxvc2Vu", "berit, 123456, YmVyaXQxMjM0NTY", "kalle, password, a2FsbGVwYXNzd29yZA"}) // Given
     public void base64Authorization(String username, String password, String expected) throws IllegalAccessException {
 
         // When
